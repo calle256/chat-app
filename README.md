@@ -34,7 +34,8 @@ A chat app between two or more users. We want to implement a client-server model
 ## Build system 
 
 
-## 
+## Kanban Link
+[link] (https://github.com/users/calle256/projects/1)
 
 
 
