@@ -6,7 +6,9 @@ This is a repository for hosting our chat application project for the TMUK14 Spr
 
 2. Amanda Nyander declare that I am the sole author of the content I add to this repository
 
-3. Calle Ovinder declare that I am the sole author of the content I add to this repository. 
+3. Calle Ovinder declare that I am the sole author of the content I add to this repository.
+   
+4. Deividas Malaska declare that I am the sole author of the content I add to this repository.
 
 | Name            | Github Username |
 |---              |---              |
