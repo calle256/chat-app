@@ -35,6 +35,8 @@ You can find our Kanban board for the project [here](https://github.com/users/ca
    
 4. Deividas Malaska declare that I am the sole author of the content I add to this repository.
 
+5. Ghadi Khalil declare that I am the sole author of the content I add to this repository.
+
 | Name            | Github Username |
 |---              |---              |
 | George Saba     | george3235      |
