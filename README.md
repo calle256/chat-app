@@ -21,6 +21,9 @@ A chat app between two or more users. We want to implement a client-server model
 
 ## Build system 
 
+# Compilation and running
+## Windows/mac
+Open the solution file in VisualStudio and run.
 
 ## Kanban Link
 You can find our Kanban board for the project [here](https://github.com/users/calle256/projects/1)
