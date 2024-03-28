@@ -6,6 +6,7 @@ Plans for future builds includes a GUI for the application.
 ## Detailed description
 We are going to use C# for the server and client application and a combination of HTML, CSS and JavaScript for the eventual frontend. Depending on our time frame we might add more features, such as a user authentication system. 
 
+
 # Plan 
 
 ## What we want to implement 
