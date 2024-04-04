@@ -6,13 +6,12 @@ namespace server
 {
 	public class ClientData
 	{
-		string userID;
+		//string userID;
 		TcpClient tcpClient;
 
-		public ClientData(string userID, TcpClient tcpClient)
+		public ClientData(TcpClient tcpClient)
 		{
 			this.tcpClient = tcpClient;
-			this.userID = userID;
 		}
 	}
 }

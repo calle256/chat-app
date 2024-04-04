@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 
@@ -21,7 +22,11 @@ namespace server
             
             while (true)
             {
-                
+                TcpClient tcpClient = listener.start();
+                clients += tcpClient;
+
+                Thread clientThread = new Thread(tcpClient);
+                clientThread.Start();
             }
 
         }
