@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ChatApp
-build_property.ProjectDir = /Users/amandanyander/Documents/mjukvaruutv/chatapp/chat-app/src/ChatApp/
+build_property.ProjectDir = C:\Users\made22sx\OneDrive - Jonkoping University\github\chatfolder\chat-app\src\ChatApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
