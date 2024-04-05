@@ -10,7 +10,7 @@ namespace ChatApp
 {
     public class Receive
     {
-        public string MsgReceive(Socket socket)
+        public string MsgReceive(TcpClient socket)
         {
             try
             {

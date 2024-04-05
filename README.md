@@ -28,10 +28,17 @@ Open the solution file in VisualStudio and run.
 ## Linux
 Requirements: Mono
 
-Compilation: Run the following command in the Git folder: 
-`csc *.cs -out:main.exe`
-Then run the main.exe file with: 
-`mono main.exe`
+To compile the server, run the following command in the Git folder:  
+`csc src/ChatApp/Listener.cs Server.cs ClientData.cs -out:server.exe`  
+Then start the server file with:  
+`mono server.exe`  
+
+To compile the server, run the following command in the Git folder:  
+`csc src/ChatApp/client.cs -out:client.exe`  
+Then run the client with:  
+`mono client.exe`  
+
+NOTE! No functionality currently exists for communicating between server and client. 
 
 
 ## Kanban Link
@@ -43,7 +50,7 @@ You can find our Kanban board for the project [here](https://github.com/users/ca
 
 2. Amanda Nyander declare that I am the sole author of the content I add to this repository
 
-3. Calle Ovinder declare that I am the sole author of the content I add to this repository.
+3. I, Calle Ovinder declare that I am the sole author of the content I add to this repository.
    
 4. Deividas Malaska declare that I am the sole author of the content I add to this repository.
 

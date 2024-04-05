@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net; 
+using System.Net.Sockets;
 
-namespace ChatApp
+namespace server
 {
     public class Listener
     {
-        PEndPoint server_IPendPoint;
+        IPEndPoint server_IPendPoint;
         TcpListener listener;
 
         public Listener(IPEndPoint server_EndPoint)

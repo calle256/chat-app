@@ -1,7 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,csharp,windows,visualstudio
 src/ChatApp/bin
 src/ChatApp/obj
-src/*.exe
+src/ChatApp/*.exe
+*.exe
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,csharp,windows,visualstudio
 
 ### Csharp ###

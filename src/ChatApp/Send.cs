@@ -12,7 +12,7 @@ namespace ChatApp
     public class Send
     {
 
-        public void MsgSend( Socket socket, String msg)
+        public void MsgSend(TcpClient socket, String msg)
         {
             // exempel på hur du initiazerar string msg = Console.ReadLine();
             // socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
