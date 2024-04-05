@@ -32,8 +32,12 @@ namespace server
             }
 
         }
-        public static void HandleClient(){
+        public static void HandleClient(object obj){
             //TODO: Implement send and receive classes to be able to communicate between server and client
+            TcpClient client = (TcpClient)obj;
+            NetworkStream stream = client.GetStream();
+            byte[] buffer = new byte[1024];
+
             return; 
         }
 
