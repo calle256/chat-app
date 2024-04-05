@@ -1,11 +1,13 @@
-﻿using System;
-using client;
-
-public class Program
+﻿namespace ChatApp
 {
-    static void Main()
+    public class Program
     {
-        Client client = new Client();
-        client.Connect();
+        static void Main()
+        {
+            Client client = new Client();
+            client.Connect();
+        }
     }
+
 }
+
