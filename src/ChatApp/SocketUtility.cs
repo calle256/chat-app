@@ -13,27 +13,35 @@ namespace ChatApp
     {
         
 
-        public static void MsgSend(Socket socket, String msg)
+        public static void MsgSend(NetworkStream stream, string msg)
         {
-            // exempel på hur du initiazerar string msg = Console.ReadLine();
-            //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            
+
+            if (stream.CanWrite)
+            {
                 byte[] msgBuffer = Encoding.Default.GetBytes(msg); //omvandlar medelande till bytes
-                socket.Send(msgBuffer, 0, msgBuffer.Length, 0); // skickar medelande
+                stream.Write(msgBuffer, 0, msgBuffer.Length); // skickar medelande
+            }
 
         }
 
-        public static string MsgReceive(Socket socket)
+        public static string MsgReceive(NetworkStream stream)
         {
             try
             {
-                byte[] msgBuffer = new byte[1024]; // siffran går att ändra för vilken storlek man vill ha
-                int received = socket.Receive(msgBuffer, 0, msgBuffer.Length, 0);
-                Array.Resize(ref msgBuffer, received);
+                if (stream.CanRead)
+                {
 
-                //string msg_received = Encoding.Default.GetString(msgBuffer);
 
-                return Encoding.Default.GetString(msgBuffer);
+                    byte[] msgBuffer = new byte[1024]; // siffran går att ändra för vilken storlek man vill ha
+                    int received = stream.Read(msgBuffer, 0, msgBuffer.Length); // läser datan från stream
+
+                    if (received > 0)
+                    {
+                        return Encoding.Default.GetString(msgBuffer, 0, received);
+                    }
+                   
+                }
+                return string.Empty;
             }
             catch 
             {
