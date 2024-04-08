@@ -42,26 +42,5 @@ namespace ChatApp
             }
 
         }
-
-        //use ip and port to connect to a server
-        public static Socket Connect(string IPAddress, int port)
-        {
-            Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            try
-            {
-                sck.Connect(IPAddress,port);
-            }
-            catch
-            {
-                Console.Write("ERROR: Connection not found!");
-                throw; // is here to retry the hole main code if sck.Connect(localEndPoint);
-                      // could use a better soluition as this can cause infinity loop, like a retrying function
-            }
-
-            return sck;
-        }
-
-
     }
 }
