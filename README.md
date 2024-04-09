@@ -29,12 +29,12 @@ Open the solution file in VisualStudio and run.
 Requirements: Mono
 
 To compile the server, run the following command in the Git folder:  
-`csc src/ChatApp/Listener.cs Server.cs ClientData.cs -out:server.exe`  
+`csc ChatApp/server/*.cs -out:server.exe`  
 Then start the server file with:  
 `mono server.exe`  
 
 To compile the server, run the following command in the Git folder:  
-`csc src/ChatApp/client.cs -out:client.exe`  
+`csc ChatApp/client/*.cs -out:client.exe`  
 Then run the client with:  
 `mono client.exe`  
 
