@@ -1,9 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System; 
-=======
-
-
 namespace ChatApp
 {
     public class Client
@@ -21,17 +18,18 @@ namespace ChatApp
             this.tcpClient = new TcpClient();
         }
 
-        public void Connect()
+        public int Connect()
         {
             try
             {
                 tcpClient.Connect(IP, port);
                 Console.Write("Connection Succesful");
-
+                return 0; 
             }
             catch 
             {
                 Console.Write("ERROR: Connection not made to server!");
+                return 1; 
             }
         }
 
@@ -44,7 +42,9 @@ namespace ChatApp
 
                 Console.Write("Enter message to be sent: ");
                 string msg = Console.ReadLine(); // läser in medelande
-
+                if(msg == null){
+                    return; 
+                }
                 SocketUtility.MsgSend(stream, msg); // skickar medelande
 
                 String receive_msg = SocketUtility.MsgReceive(stream); // tar emot medelande från avsändare
@@ -59,9 +59,6 @@ namespace ChatApp
                 Console.Write("ERROR: Failed Connection, trying again... ");
                 this.Connect();
             }
-                  
-
         }
-
     }
 }
