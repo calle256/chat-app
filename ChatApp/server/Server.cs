@@ -14,7 +14,7 @@ namespace server
     {
         static List<TcpClient> clients = new List<TcpClient>(); 
 
-        static void Main(string[] args)
+        public void StartServer()
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Loopback, 1234);
             Listener listener = new Listener(ip);
@@ -32,6 +32,7 @@ namespace server
             }
 
         }
+
         public static void HandleClient(){
             //TODO: Implement send and receive classes to be able to communicate between server and client
             return; 
