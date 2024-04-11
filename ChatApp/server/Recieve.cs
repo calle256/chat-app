@@ -17,8 +17,8 @@ namespace ChatApp
                 byte[] msgBuffer = new byte[1024]; // siffran går att ändra för vilken storlek man vill ha
                 int received = socket.Receive(msgBuffer, 0, msgBuffer.Length, 0);
                 Array.Resize(ref msgBuffer, received);
-
-                string msg_received = Encoding.Default.GetString(msgBuffer);
+        
+                string msg_received = Encoding.UTF8.GetString(msgBuffer);
 
                 return msg_received;
             }

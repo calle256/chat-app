@@ -18,7 +18,8 @@ namespace ChatApp
             // socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
             {
-                byte[] msgBuffer = Encoding.Default.GetBytes(msg); //omvandlar medelande till bytes
+                
+                byte[] msgBuffer = Encoding.UTF8.GetBytes(msg); //omvandlar medelande till bytes
                 socket.Send(msgBuffer, 0, msgBuffer.Length, 0); // skickar medelande
 
             }

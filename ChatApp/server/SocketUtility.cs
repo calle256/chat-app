@@ -18,7 +18,8 @@ namespace ChatApp
 
             if (stream.CanWrite)
             {
-                byte[] msgBuffer = Encoding.Default.GetBytes(msg); //omvandlar medelande till bytes
+                
+                byte[] msgBuffer = Encoding.UTF8.GetBytes(msg); //omvandlar medelande till bytes
                 stream.Write(msgBuffer, 0, msgBuffer.Length); // skickar medelande
             }
 
@@ -37,7 +38,8 @@ namespace ChatApp
 
                     if (received > 0)
                     {
-                        return Encoding.Default.GetString(msgBuffer, 0, received);
+                        
+                        return Encoding.UTF8.GetString(msgBuffer, 0, received);
                     }
                    
                 }
