@@ -32,5 +32,9 @@ namespace server
 
             return client;
         }
+        public void Stop()
+        {
+            listener.Stop(); 
+        }
     }
 }
