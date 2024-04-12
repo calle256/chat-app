@@ -28,12 +28,10 @@ public class Tests
         TcpClient client = new TcpClient();
         TcpListener listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 2345); 
         Thread listenThread = new Thread(() => {
-            Console.WriteLine("hello"); 
             listener.Start(1);
             listener.AcceptSocket(); 
         }); 
         listenThread.Start(); 
-        Console.WriteLine("we are here"); 
         Thread.Sleep(10); 
         client.Connect("127.0.0.1", 2345); 
         var stream = client.GetStream();

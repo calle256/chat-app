@@ -1,4 +1,7 @@
 This is a repository for hosting our chat application project for the TMUK14 Spring course. 
+
+![workflow](https://github.com/calle256/chat-app/actions/workflows/dotnet.yml/badge.svg)
+
 # Project description
 We want to implement a chat application that communicates between terminals. 
 Plans for future builds includes a GUI for the application.
@@ -40,6 +43,8 @@ Then run the client with:
 
 NOTE! No functionality currently exists for communicating between server and client. 
 
+## Unit tests
+
 
 ## Kanban Link
 You can find our Kanban board for the project [here](https://github.com/users/calle256/projects/1)
@@ -48,7 +53,7 @@ You can find our Kanban board for the project [here](https://github.com/users/ca
 
 1. George Saba declare that I am the sole author of the content I add to this repository
 
-2. Amanda Nyander declare that I am the sole author of the content I add to this repository
+2. I, Amanda Nyander declare that I am the sole author of the content I add to this repository
 
 3. I, Calle Ovinder declare that I am the sole author of the content I add to this repository.
    
