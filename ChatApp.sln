@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "ChatApp\server\se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Test", "Client.Test\Client.Test.csproj", "{83403A06-98F4-4FDF-9BD9-AC4B40B49465}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Test", "Server.Test\Server.Test.csproj", "{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +65,18 @@ Global
 		{83403A06-98F4-4FDF-9BD9-AC4B40B49465}.Release|x64.Build.0 = Release|Any CPU
 		{83403A06-98F4-4FDF-9BD9-AC4B40B49465}.Release|x86.ActiveCfg = Release|Any CPU
 		{83403A06-98F4-4FDF-9BD9-AC4B40B49465}.Release|x86.Build.0 = Release|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Debug|x64.Build.0 = Debug|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Debug|x86.Build.0 = Debug|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Release|x64.ActiveCfg = Release|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Release|x64.Build.0 = Release|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5819158-F3D7-4FBA-8CF9-14ADEC7AC991}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{72A74CD5-3D5D-4AC4-B63B-3F0C33A9F74B} = {7106C96A-6E28-47AE-AFC4-1348B5D4FDB0}

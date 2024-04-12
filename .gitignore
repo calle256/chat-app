@@ -7,8 +7,10 @@ ChatApp/server/bin/*
 ChatApp/obj/*
 ChatApp/client/obj/
 ChatApp/server/obj/
-./Client.Test/bin/*
-./Client.Test/obj/*
+./Client.Test/bin/
+./Client.Test/obj/
+./Server.Test/bin/
+./Server.Test/obj/
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,csharp,windows,visualstudio
 
 ### Csharp ###
