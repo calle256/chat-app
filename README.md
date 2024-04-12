@@ -45,20 +45,20 @@ Then run the client with:
 NOTE! No functionality currently exists for communicating between server and client. 
 
 ## Unit tests
-Run the following command in the Git folder for unit testing:
+Run the following command in the Git folder for unit testing:  
 `dotnet test`
-Run the following command in the Git folder for code coverage:
+Run the following command in the Git folder for code coverage:  
 `dotnet tool install --global dotnet-coverage`
-Then run:
+Then run:  
 `dotnet-coverage collect`
 
 
 ## Linter
-To use the linter, run the following command in the Git folder:
+To use the linter, run the following command in the Git folder:  
 `dotnet tool install csharpier`
-if csharpier already is installed run:
+if csharpier already is installed run:  
 `dotnet csharpier .`
-For CI pipeline run:
+For CI pipeline run:  
 `dotnet csharpier  --check`
 
 
@@ -73,7 +73,7 @@ You can find our Kanban board for the project [here](https://github.com/users/ca
 
 3. I, Calle Ovinder declare that I am the sole author of the content I add to this repository.
    
-4. Deividas Malaska declare that I am the sole author of the content I add to this repository.
+4. I, Deividas Malaska declare that I am the sole author of the content I add to this repository.
 
 5. Ghadi Khalil declare that I am the sole author of the content I add to this repository.
 
