@@ -28,6 +28,7 @@ A chat app between two or more users. We want to implement a client-server model
 # Compilation and running
 ## Windows/ Mac
 Open the solution file in VisualStudio and run.
+
 ## Linux
 Requirements: Mono
 
@@ -44,6 +45,21 @@ Then run the client with:
 NOTE! No functionality currently exists for communicating between server and client. 
 
 ## Unit tests
+Run the following command in the Git folder for unit testing:  
+`dotnet test`  
+Run the following command in the Git folder for code coverage:  
+`dotnet tool install --global dotnet-coverage`  
+Then run:  
+`dotnet-coverage collect`  
+
+
+## Linter
+To use the linter, run the following command in the Git folder:  
+`dotnet tool install csharpier`  
+if csharpier already is installed run:  
+`dotnet csharpier .`  
+For CI pipeline run:  
+`dotnet csharpier  --check`  
 
 
 ## Kanban Link
@@ -57,7 +73,7 @@ You can find our Kanban board for the project [here](https://github.com/users/ca
 
 3. I, Calle Ovinder declare that I am the sole author of the content I add to this repository.
    
-4. Deividas Malaska declare that I am the sole author of the content I add to this repository.
+4. I, Deividas Malaska declare that I am the sole author of the content I add to this repository.
 
 5. Ghadi Khalil declare that I am the sole author of the content I add to this repository.
 

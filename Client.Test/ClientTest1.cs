@@ -22,10 +22,3 @@ public class Tests
     }
 }
 
-    //checks if the function write the correct msg to the stream
-
-    //Receive tester
-    /*
-     1. Kolla ifall den returnar den förväntade meddelande när den läser från stream
-     2. Kollar att funktionen returnar en tom sträng när stream är ledig
- */ 
