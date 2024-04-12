@@ -1,5 +1,5 @@
 ﻿using System;
-using server;
+using ChatApp;
 
 namespace server
 {
