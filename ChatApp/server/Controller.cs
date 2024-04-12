@@ -1,7 +1,9 @@
 ﻿using System;
+using server;
+
 namespace server
 {
-	public class Controller
+	class Controller
 	{
 		static void Main(string[] args)
 		{
