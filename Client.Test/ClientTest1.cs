@@ -1,21 +1,21 @@
 using ChatApp; 
 using System.Net.Sockets; 
-using System.Net; 
+using System.Net;
+using System.Text; 
 public class Tests
 {
     private Client _client;
-    private SocketUtility _SocketUtility;
     [SetUp]
     public void Setup()
     {
-        _client = new Client("127.0.0.1", 1234); 
+        _client = new Client("127.0.0.1", 1122); 
     }
 
     [Test]
     public void TestClientConnection()
     {
         IPAddress ip = IPAddress.Parse("127.0.0.1"); 
-        TcpListener server = new TcpListener(ip, 1234); 
+        TcpListener server = new TcpListener(ip, 1122); 
         server.Start(); 
         int result = _client.Connect(); 
         Assert.AreEqual(0, result); 
@@ -25,11 +25,26 @@ public class Tests
     [Test]
     public void TestClientSend()
     {
-        var stream = new MemoryStream();
+        TcpClient client = new TcpClient();
+        TcpListener listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 2345); 
+        Thread listenThread = new Thread(() => {
+            Console.WriteLine("hello"); 
+            listener.Start(1);
+            listener.AcceptSocket(); 
+        }); 
+        listenThread.Start(); 
+        Console.WriteLine("we are here"); 
+        Thread.Sleep(10); 
+        client.Connect("127.0.0.1", 2345); 
+        var stream = client.GetStream();
         string msg = "Testing, Send function";
-        _SocketUtility.MsgSend(stream, msg);
-        string expectedMsg = Encoding.UTF8.GetString(stream.ToArray());
-        Arrest.AreEqual(msg, expectedMsg);
+        byte[] buf = new byte[100]; 
+        SocketUtility.MsgSend(stream, msg);
+        int res = stream.Read(buf, 0, 100); 
+        string expectedMsg = Encoding.UTF8.GetString(buf);
+        listenThread.Join(); 
+        listener.Stop(); 
+        Assert.AreEqual(msg, expectedMsg);
     }
 
     //Receive tester
