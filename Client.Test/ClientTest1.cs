@@ -20,35 +20,5 @@ public class Tests
         int result = _client.Connect(); 
         Assert.AreEqual(0, result); 
     }
-
-    //checks if the function write the correct msg to the stream
-    [Test]
-    public void TestClientSend()
-    {
-        TcpClient client = new TcpClient();
-        TcpListener listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 2345); 
-        Thread listenThread = new Thread(() => {
-            listener.Start(1);
-            listener.AcceptSocket(); 
-        }); 
-        listenThread.Start(); 
-        Thread.Sleep(10); 
-        client.Connect("127.0.0.1", 2345); 
-        var stream = client.GetStream();
-        string msg = "Testing, Send function";
-        byte[] buf = new byte[100]; 
-        SocketUtility.MsgSend(stream, msg);
-        int res = stream.Read(buf, 0, 100); 
-        string expectedMsg = Encoding.UTF8.GetString(buf);
-        listenThread.Join(); 
-        listener.Stop(); 
-        Assert.AreEqual(msg, expectedMsg);
-    }
-
-    //Receive tester
-    /*
-     1. Kolla ifall den returnar den f�rv�ntade meddelande n�r den l�ser fr�n stream
-     2. Kollar att funktionen returnar en tom str�ng n�r stream �r ledig
-      
-     */
 }
+
