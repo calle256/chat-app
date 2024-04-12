@@ -46,20 +46,20 @@ NOTE! No functionality currently exists for communicating between server and cli
 
 ## Unit tests
 Run the following command in the Git folder for unit testing:  
-`dotnet test`
+`dotnet test`  
 Run the following command in the Git folder for code coverage:  
-`dotnet tool install --global dotnet-coverage`
+`dotnet tool install --global dotnet-coverage`  
 Then run:  
-`dotnet-coverage collect`
+`dotnet-coverage collect`  
 
 
 ## Linter
 To use the linter, run the following command in the Git folder:  
-`dotnet tool install csharpier`
+`dotnet tool install csharpier`  
 if csharpier already is installed run:  
-`dotnet csharpier .`
+`dotnet csharpier .`  
 For CI pipeline run:  
-`dotnet csharpier  --check`
+`dotnet csharpier  --check`  
 
 
 ## Kanban Link
