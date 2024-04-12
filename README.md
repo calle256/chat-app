@@ -1,7 +1,6 @@
 This is a repository for hosting our chat application project for the TMUK14 Spring course. 
 
-![workflow]
-(https://github.com/calle256/chat-app/actions/runs/8659998422/job/23747008925)
+![workflow](https://github.com/calle256/chat-app/actions/workflows/dotnet.yml/badge.svg)
 
 # Project description
 We want to implement a chat application that communicates between terminals. 
