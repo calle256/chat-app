@@ -1,7 +1,7 @@
 ﻿using System;
 using ChatApp;
 
-public class Program
+class Program
 {
     static void Main()
     {
