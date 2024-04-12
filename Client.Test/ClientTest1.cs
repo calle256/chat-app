@@ -1,24 +1,26 @@
-using ChatApp; 
-using System.Net.Sockets; 
-using System.Net; 
+using System.Net;
+using System.Net.Sockets;
+using ChatApp;
+
 public class Tests
 {
     private Client _client;
     private SocketUtility _SocketUtility;
+
     [SetUp]
     public void Setup()
     {
-        _client = new Client("127.0.0.1", 1234); 
+        _client = new Client("127.0.0.1", 1234);
     }
 
     [Test]
     public void TestClientConnection()
     {
-        IPAddress ip = IPAddress.Parse("127.0.0.1"); 
-        TcpListener server = new TcpListener(ip, 1234); 
-        server.Start(); 
-        int result = _client.Connect(); 
-        Assert.AreEqual(0, result); 
+        IPAddress ip = IPAddress.Parse("127.0.0.1");
+        TcpListener server = new TcpListener(ip, 1234);
+        server.Start();
+        int result = _client.Connect();
+        Assert.AreEqual(0, result);
     }
 
     //checks if the function write the correct msg to the stream
@@ -34,12 +36,8 @@ public class Tests
 
     //Receive tester
     /*
-     1. Kolla ifall den returnar den förväntade meddelande när den läser från stream
-     2. Kollar att funktionen returnar en tom sträng när stream är ledig
+     1. Kolla ifall den returnar den fï¿½rvï¿½ntade meddelande nï¿½r den lï¿½ser frï¿½n stream
+     2. Kollar att funktionen returnar en tom strï¿½ng nï¿½r stream ï¿½r ledig
       
      */
-
-    
-
-    
 }

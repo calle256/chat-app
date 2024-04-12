@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Net.Sockets;
 using System.Net;
-using server; 
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using server;
 
 namespace server
 {
     public class Server
     {
-        static List<TcpClient> clients = new List<TcpClient>(); 
+        static List<TcpClient> clients = new List<TcpClient>();
 
         public void StartServer()
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Loopback, 1234);
             Listener listener = new Listener(ip);
-            Thread handleDcThread = new Thread(HandleDisconnect); 
-            handleDcThread.Start(); 
-            
+            Thread handleDcThread = new Thread(HandleDisconnect);
+            handleDcThread.Start();
 
             while (true)
             {
@@ -30,39 +29,46 @@ namespace server
                 Thread clientThread = new Thread(HandleClient);
                 clientThread.Start();
             }
-
         }
 
-        public static void HandleClient(){
+        public static void HandleClient()
+        {
             //TODO: Implement send and receive classes to be able to communicate between server and client
-            return; 
+            return;
         }
 
-
-        //helper function for HandleDisconnect. 
-        public static bool IsConnected(TcpClient client){
-            try{
-                return !(client.Client.Poll(1, SelectMode.SelectRead) && client.Client.Available == 0); 
+        //helper function for HandleDisconnect.
+        public static bool IsConnected(TcpClient client)
+        {
+            try
+            {
+                return !(
+                    client.Client.Poll(1, SelectMode.SelectRead) && client.Client.Available == 0
+                );
             }
-            catch(SocketException){ return false; }
-        }
-
-        //Check connection status for each client every second and close streams for disconnected 
-        //clients. 
-        public static void HandleDisconnect(){
-            while(true){
-                Thread.Sleep(1000); 
-                foreach (TcpClient client in clients){
-                   if (!IsConnected(client)){
-                      clients.Remove(client);  
-                      client.Close();
-                      break; 
-                   } 
-                }    
+            catch (SocketException)
+            {
+                return false;
             }
         }
 
+        //Check connection status for each client every second and close streams for disconnected
+        //clients.
+        public static void HandleDisconnect()
+        {
+            while (true)
+            {
+                Thread.Sleep(1000);
+                foreach (TcpClient client in clients)
+                {
+                    if (!IsConnected(client))
+                    {
+                        clients.Remove(client);
+                        client.Close();
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
-
-
