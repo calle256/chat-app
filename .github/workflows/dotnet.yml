@@ -32,6 +32,10 @@ jobs:
       run: dotnet build --no-restore ChatApp/server
     - name: Build client
       run: dotnet build --no-restore ChatApp/client
+    - name: Build server test
+      run: dotnet build --no-restore Server.Test
+    - name: Build client test
+      run: dotnet build --no-restore Client.Test
     - name: Run server tests
       run: dotnet test --no-build --verbosity normal Server.Test
     - name: Run client tests 
