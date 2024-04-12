@@ -3,7 +3,8 @@ using System.Net.Sockets;
 using System.Net; 
 public class Tests
 {
-    private Client _client; 
+    private Client _client;
+    private SocketUtility _SocketUtility;
     [SetUp]
     public void Setup()
     {
@@ -20,9 +21,25 @@ public class Tests
         Assert.AreEqual(0, result); 
     }
 
+    //checks if the function write the correct msg to the stream
     [Test]
-    public void TestClientReceive()
+    public void TestClientSend()
     {
-        
+        var stream = new MemoryStream();
+        string msg = "Testing, Send function";
+        _SocketUtility.MsgSend(stream, msg);
+        string expectedMsg = Encoding.UTF8.GetString(stream.ToArray());
+        Arrest.AreEqual(msg, expectedMsg);
     }
+
+    //Receive tester
+    /*
+     1. Kolla ifall den returnar den förväntade meddelande när den läser från stream
+     2. Kollar att funktionen returnar en tom sträng när stream är ledig
+      
+     */
+
+    
+
+    
 }
