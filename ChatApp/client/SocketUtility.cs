@@ -15,7 +15,7 @@ namespace ChatApp
         {
             if (stream.CanWrite)
             {
-                byte[] msgBuffer = Encoding.Default.GetBytes(msg); //omvandlar medelande till bytes
+                byte[] msgBuffer = Encoding.UTF8.GetBytes(msg); //omvandlar medelande till bytes
                 stream.Write(msgBuffer, 0, msgBuffer.Length); // skickar medelande
             }
         }
@@ -31,16 +31,48 @@ namespace ChatApp
 
                     if (received > 0)
                     {
-                        return Encoding.Default.GetString(msgBuffer, 0, received);
+                        return Encoding.UTF8.GetString(msgBuffer, 0, received);
                     }
                 }
                 return string.Empty;
             }
             catch
             {
-                Console.Write("ERROR: Message not received!");
-                return "ERROR: Message not received!";
+                
+                return "ERROR: Message not received!\n";
             }
         }
+
+        public static async Task MsgSendAsync(NetworkStream stream, string msg) 
+        {
+            if (stream.CanWrite)
+            {
+                byte[] msgBuffer = Encoding.UTF8.GetBytes(msg); //omvandlar medelande till bytes
+                await stream.WriteAsync(msgBuffer, 0, msgBuffer.Length); // skickar medelande
+            }
+        }
+
+        public static async Task<string> MsgReceiveAsync(NetworkStream stream) 
+        {
+            try
+            {
+                if (stream.CanRead)
+                {
+                    byte[] msgBuffer = new byte[1024]; // siffran går att ändra för vilken storlek man vill ha
+                    int received = await stream.ReadAsync(msgBuffer, 0, msgBuffer.Length); // läser datan från stream
+
+                    if (received > 0)
+                    {
+                        return Encoding.UTF8.GetString(msgBuffer, 0, received);
+                    }
+                }
+                return string.Empty;
+            }
+            catch
+            {
+                return "ERROR: Message not received!\n";
+            }
+        }
+
     }
 }

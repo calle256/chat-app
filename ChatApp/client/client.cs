@@ -1,17 +1,18 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+
 
 namespace ChatApp
 {
     public class Client
     {
         private TcpClient tcpClient;
-        private string IP = "127.0.0.1"; // Change to what fits
-        private int port = 1234; // So we start with 1 Server so these will be the same for all clients
+        private string IP = "127.0.0.1";
+        private int port = 1234;
 
-        // but in the future we will probably want a function that assigns the correct server IP and port to (that function should probably be added to SocketUtility)
-        // the client depending on who they want to chat with
+
 
         public Client(string IPAddress, int port)
         {
@@ -20,20 +21,39 @@ namespace ChatApp
             this.tcpClient = new TcpClient();
         }
 
+
+
         public int Connect()
         {
             try
             {
                 tcpClient.Connect(IP, port);
-                Console.Write("Connection Succesful");
+                Console.Write("Connection Succesful\n");
                 return 0;
             }
             catch
             {
-                Console.Write("ERROR: Connection not made to server!");
+                Console.Write("ERROR: Connect()\n");
                 return 1;
             }
-        }
+        } // end Connect
+
+        public async Task<int> ConnectAsynchronous()
+        {
+            try
+            {
+                await tcpClient.ConnectAsync(IP, port);
+                Console.Write("Connection Succesful\n");
+                return 0;
+            }
+            catch
+            {
+                Console.Write("ERROR: ConnectAsynchronous()\n");
+                return 1;
+            }
+        }// end ConnectAsynchronous
+
+
 
         public void RunClient()
         {
@@ -42,24 +62,104 @@ namespace ChatApp
                 NetworkStream stream = tcpClient.GetStream();
 
                 Console.Write("Enter message to be sent: ");
-                string? msg = Console.ReadLine(); // läser in medelande
+                string? msg = Console.ReadLine();
                 if (msg == null)
                 {
                     return;
                 }
-                SocketUtility.MsgSend(stream, msg); // skickar medelande
+                SocketUtility.MsgSend(stream, msg);
 
-                String receive_msg = SocketUtility.MsgReceive(stream); // tar emot medelande från avsändare
-                Console.Write("Received message: " + receive_msg); // printar medelandet
+                String receive_msg = SocketUtility.MsgReceive(stream);
+                Console.Write("Received message: " + receive_msg);
 
                 stream.Close();
                 tcpClient.Close();
             }
             else
             {
-                Console.Write("ERROR: Failed Connection, trying again... ");
+                Console.Write("ERROR: Failed Connection, trying again... \n");
                 this.Connect();
             }
+        }// end RunClient
+
+
+        public async Task RunClientAsynchronous()
+        {
+            try
+            {
+                if (!tcpClient.Connected) //tries to establish connection if not connected, so should garantee that it always looks for a connection if not connected
+                {
+                    await ConnectAsynchronous();
+                }
+                
+                
+                var sendAsyncTask       = MsgSender(tcpClient.GetStream());
+                var receiveAsyncTask    = MsgReceiver(tcpClient.GetStream());
+
+                //does this when above is done
+                await Task.WhenAll(sendAsyncTask, receiveAsyncTask);
+            }
+            catch
+            {
+                Console.Write("ERROR: Connection failed! \n");
+            }
+            //closes the program
+            finally
+            {
+                if (tcpClient.Connected)
+                {
+                    
+                    tcpClient.Close();
+                }
+            }
+        } // end RunClientAsynchronous
+
+
+        public async Task MsgSender(NetworkStream stream)
+        {
+
+            while (tcpClient.Connected)
+            {
+                string? msg = Console.ReadLine();
+                Console.Write("Enter message to send: ");
+
+
+                // if this happens then it jumps to finally block and cl0ses the stream
+                if (msg == "exit") // vi kan ändra till ngt mera passade om vi vill
+                {
+                    Console.Write("Exiting Client...\n ");
+                    tcpClient.Close();
+                    break;
+                }
+
+                if (msg != null)
+                {
+                    await SocketUtility.MsgSendAsync(stream, msg);
+                }
+
+            }
         }
+
+        public async Task MsgReceiver(NetworkStream stream)
+        {
+            while (tcpClient.Connected)
+            {
+                string receive_msg = await SocketUtility.MsgReceiveAsync(stream);
+
+                if (receive_msg != string.Empty)
+                {
+                    Console.Write("Received message: " + receive_msg + "\n");
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+
+
+        }
+
+
     }
 }
