@@ -28,7 +28,10 @@ namespace server
             {
                 TcpClient tcpClient = listener.start();
                 clients.Add(tcpClient);
-                
+
+                Thread clientThread = new Thread(() => groupChat.HandleClientConnection(tcpClient));
+                clientThread.Start();
+
                 Thread clientThread = new Thread(() => ControlClient(tcpClient));
                 clientThread.Start();
             }
