@@ -5,51 +5,41 @@ namespace server
 {
     public class SessionManager
     {
-        private Dictionary<string, Dictionary<string, UserInfo>> sessions = new Dictionary<string, Dictionary<string, UserInfo>>();
+        private List<GroupServer> sessions; 
+        //private Dictionary<string, Dictionary<string, UserInfo>> sessions = new Dictionary<string, Dictionary<string, UserInfo>>();
         private TimeSpan sessionTimeout = TimeSpan.FromMinutes(30);
 
-        public string CreateSession(string groupId, UserInfo userInfo)
+        public void CreateSession(string groupId)
         {
-            if (!sessions.TryGetValue(groupId, out Dictionary<string, UserInfo>? value))
-            {
-                value = new Dictionary<string, UserInfo>();
-                sessions[groupId] = value;
-            }
-
-            string sessionId = Guid.NewGuid().ToString();
-            value[sessionId] = userInfo;
-            return sessionId;
+            GroupServer group = new GroupServer(groupId); 
         }
 
     }
 
     public class GroupServer
     {
-        private Dictionary<string, List<TcpClient>> groups = new Dictionary<string, List<TcpClient>>();
-        private SessionManager sessionManager = new SessionManager();
-
-        public void JoinGroup(TcpClient tcpClient, string groupId)
+        private string SessionId; 
+        private List<TcpClient> Clients; 
+        //private Dictionary<string, List<TcpClient>> groups = new Dictionary<string, List<TcpClient>>();
+        public GroupServer(string id)
         {
-            if (!groups.TryGetValue(groupId, out List<TcpClient>? value))
-            {
-                value = new List<TcpClient>();
-                groups[groupId] = value;
-            }
-
-            value.Add(tcpClient);
+            this.SessionId = id; 
+            this.Clients = new List<TcpClient>(); 
+        }
+        
+        public void JoinGroup(TcpClient client)
+        {
+            Clients.Add(client); 
         }
 
-        public void LeaveGroup(TcpClient tcpClient, string groupId)
+        public void LeaveGroup(TcpClient tcpClient)
         {
-            if (groups.TryGetValue(groupId, out List<TcpClient>? value))
-            {
-                value.Remove(tcpClient);
-            }
+            Clients.Remove(tcpClient); 
         }
 
         // detta ska vara i server under HandleClient sen eventuellt om allt funkar som det ska enligt resten av gänget.
         // groupId får skrivas in när någon ansluter?
-        public void HandleClientConnection(TcpClient client, string groupId)
+        public void HandleClientConnection(TcpClient client)
         {
             NetworkStream stream = client.GetStream();
             string userNameRequest = "Enter username";
@@ -59,15 +49,42 @@ namespace server
 
             UserInfo userInfo = AuthenticateUser(userName);
 
-            string sessionId = sessionManager.CreateSession(groupId, userInfo);
-            SocketUtility.MsgSend(stream, sessionId);
-
+            SocketUtility.MsgSend(stream, SessionId);
+            JoinGroup(client); 
+            foreach(var chatter in Clients){
+                Console.WriteLine(client); 
+            }
+            while(true){
+                string msg = ReceiveMsg(client); 
+                SendMsgToAll(msg, client); 
+            }
+            
             //kanske ha något mer här för att validera rätt grupp osv.
         }
 
         private static UserInfo AuthenticateUser(string username)
         {
             return new UserInfo { UserName = username, LastActive = DateTime.Now };
+        }
+       
+        private string ReceiveMsg(TcpClient sender)
+        {
+            string msg = SocketUtility.MsgReceive(sender.GetStream()); 
+            return msg; 
+        }
+        private void SendMsgToAll(string msg, TcpClient sender)
+        {
+            lock(Clients)
+            {
+                foreach (var client in Clients)
+                {
+                    if (client != sender)
+                    {
+                        var socket = client.GetStream();
+                        SocketUtility.MsgSend(socket, msg);
+                    }
+                }
+            }
         }
     }
 

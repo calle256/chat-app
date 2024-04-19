@@ -15,6 +15,7 @@ namespace server
     {
         private readonly List<TcpClient> clients = new List<TcpClient>();
         private readonly Send sender = new Send();
+        private GroupServer groupChat = new GroupServer("groupsession"); 
 
         public void StartServer()
         {
@@ -28,8 +29,8 @@ namespace server
                 TcpClient tcpClient = listener.start();
                 clients.Add(tcpClient);
 
-                Thread clientThread = new Thread(() => HandleClient(tcpClient));
-                clientThread.Start();
+                Thread clientThread = new Thread(() => groupChat.HandleClientConnection(tcpClient)); 
+                clientThread.Start(); 
             }
         }
 
