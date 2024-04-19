@@ -28,17 +28,18 @@ namespace server
             {
                 TcpClient tcpClient = listener.start();
                 clients.Add(tcpClient);
-
+              
                 Thread clientThread = new Thread(() => groupChat.HandleClientConnection(tcpClient));
                 clientThread.Start();
+              
+                Thread clientHandlerThread = new Thread(() => HandleClient(tcpClient));
+                clientHandlerThread.Start();
 
-                Thread clientControlThread = new Thread(() => ControlClient(tcpClient));
-                clientControlThread.Start();
             }
         }
 
         // Method to manage Client sessions
-        public void ControlClient(TcpClient client)
+        public void HandleClient(TcpClient client)
         {
             try
             {
