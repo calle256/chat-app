@@ -47,7 +47,7 @@ namespace server
 
             string userName = SocketUtility.MsgReceive(stream);
 
-            UserInfo userInfo = AuthenticateUser(userName);
+            UserInfo userInfo = AuthenticateUser(userName,client);
 
             SocketUtility.MsgSend(stream, SessionId);
             JoinGroup(client); 
@@ -56,15 +56,17 @@ namespace server
             }
             while(true){
                 string msg = ReceiveMsg(client); 
-                SendMsgToAll(msg, client); 
+                SendMsgToAll(userName + ": " + msg, client); 
             }
             
             //kanske ha något mer här för att validera rätt grupp osv.
         }
 
-        private static UserInfo AuthenticateUser(string username)
+        private static UserInfo AuthenticateUser(string username, TcpClient client)
         {
-            return new UserInfo { UserName = username, LastActive = DateTime.Now };
+            return new UserInfo { UserName = username, 
+                                  Client = client, 
+                                  LastActive = DateTime.Now };
         }
        
         private string ReceiveMsg(TcpClient sender)
@@ -93,6 +95,7 @@ namespace server
     public class UserInfo
     {
         public string UserName { get; set; }
+        public TcpClient Client; 
         public DateTime LastActive { get; set; }
     }
 }
