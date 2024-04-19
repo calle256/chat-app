@@ -29,13 +29,13 @@ namespace server
                 TcpClient tcpClient = listener.start();
                 clients.Add(tcpClient);
                 
-                Thread clientThread = new Thread(() => ControlClient(tcpClient));
-                clientThread.Start();
+                Thread clientHandlerThread = new Thread(() => HandleClient(tcpClient));
+                clientHandlerThread.Start();
             }
         }
 
         // Method to manage Client sessions
-        public void ControlClient(TcpClient client)
+        public void HandleClient(TcpClient client)
         {
             try
             {
