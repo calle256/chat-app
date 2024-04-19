@@ -19,7 +19,7 @@ namespace server
 
         public void StartServer()
         {
-            IPEndPoint ip = new IPEndPoint(IPAddress.Loopback, 1234);
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
             Listener listener = new Listener(ip);
             Thread handleDcThread = new Thread(HandleDisconnect);
             handleDcThread.Start();
