@@ -15,10 +15,11 @@ namespace server
     {
         private readonly List<TcpClient> clients = new List<TcpClient>();
         private readonly Send sender = new Send();
+        private GroupServer groupChat = new GroupServer("groupsession"); 
 
         public void StartServer()
         {
-            IPEndPoint ip = new IPEndPoint(IPAddress.Loopback, 1234);
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
             Listener listener = new Listener(ip);
             Thread handleDcThread = new Thread(HandleDisconnect);
             handleDcThread.Start();
@@ -28,8 +29,13 @@ namespace server
                 TcpClient tcpClient = listener.start();
                 clients.Add(tcpClient);
 
+<<<<<<< HEAD
                 Thread clientThread = new Thread(() => ControlClient(tcpClient));
                 clientThread.Start();
+=======
+                Thread clientThread = new Thread(() => groupChat.HandleClientConnection(tcpClient)); 
+                clientThread.Start(); 
+>>>>>>> 528963c101b2c620f72ce2c152f6294fcfdc7231
             }
         }
 
