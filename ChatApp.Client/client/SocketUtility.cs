@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32.SafeHandles;
 
-namespace ChatApp
+namespace ChatApp.Client
 {
     public static class SocketUtility
     {
