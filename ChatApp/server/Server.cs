@@ -31,11 +31,13 @@ namespace server
               
                 Thread clientThread = new Thread(() => groupChat.HandleClientConnection(tcpClient));
                 clientThread.Start();
+              
+
             }
         }
 
         // Method to manage Client sessions
-        public void HandleClient(TcpClient client)
+        public void ClientHandler(TcpClient client)
         {
             try
             {
