@@ -31,10 +31,6 @@ namespace server
               
                 Thread clientThread = new Thread(() => groupChat.HandleClientConnection(tcpClient));
                 clientThread.Start();
-              
-                Thread clientHandlerThread = new Thread(() => HandleClient(tcpClient));
-                clientHandlerThread.Start();
-
             }
         }
 
