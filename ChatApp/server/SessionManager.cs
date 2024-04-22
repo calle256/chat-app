@@ -55,8 +55,19 @@ namespace server
                 Console.WriteLine(client); 
             }
             while(true){
-                string msg = ReceiveMsg(client); 
-                SendMsgToAll(userName + ": " + msg, client); 
+                try{                
+                    string msg = ReceiveMsg(client); 
+                    if(msg != String.Empty)
+                      SendMsgToAll(userName + ": " + msg, client); 
+                }
+                catch (Exception e){
+                    Console.WriteLine(e);
+                    SendMsgToAll(userName + " has disconnected.", client); 
+                    stream.Close(); 
+                    client.Close(); 
+                    Clients.Remove(client); 
+                    return; 
+                }
             }
             
             //kanske ha något mer här för att validera rätt grupp osv.
