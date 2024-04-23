@@ -62,7 +62,7 @@ namespace ChatApp
                 if(tcpClient.Client.Poll(1000, SelectMode.SelectRead) && tcpClient.Client.Available == 0)
                     break; 
                 string msg = SocketUtility.MsgReceive(stream); 
-                Console.Write("\nReceived message: " + msg + "\nEnter message to send: "); 
+                Console.Write(msg + "\n"); 
             }
         }
 
@@ -70,7 +70,6 @@ namespace ChatApp
             while (true){
                 if(tcpClient.Client.Poll(1000, SelectMode.SelectRead) && tcpClient.Client.Available == 0)
                     break; 
-                Console.Write("Enter message to send: ");
                 string msg = Console.ReadLine(); 
                 if (msg != null){
                     SocketUtility.MsgSend(stream, msg); 
