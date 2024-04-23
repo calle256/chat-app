@@ -12,10 +12,7 @@ namespace ChatApp
    
     public static class SocketUtility
     {
-        enum user
-        {
-            user1, user2, user3
-        }
+
         public static void MsgSend(NetworkStream stream, string msg)
         {
             if (stream.CanWrite)
