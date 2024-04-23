@@ -28,12 +28,12 @@ namespace ChatApp
             try
             {
                 tcpClient.Connect(IP, port);
-                Console.Write("Connection Succesful\n");
+                Console.Write("Connection succesful!\n");
                 return 0;
             }
             catch
             {
-                Console.Write("ERROR: Connect()\n");
+                Console.Write("ERROR: Connect!\n");
                 return 1;
             }
         } 
