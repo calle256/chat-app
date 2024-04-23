@@ -9,14 +9,19 @@ using Microsoft.Win32.SafeHandles;
 
 namespace ChatApp
 {
+   
     public static class SocketUtility
     {
+        enum user
+        {
+            user1, user2, user3
+        }
         public static void MsgSend(NetworkStream stream, string msg)
         {
             if (stream.CanWrite)
             {
-                byte[] msgBuffer = Encoding.UTF8.GetBytes(msg); //omvandlar medelande till bytes
-                stream.Write(msgBuffer, 0, msgBuffer.Length); // skickar medelande
+                byte[] msgBuffer = Encoding.UTF8.GetBytes(msg); 
+                stream.Write(msgBuffer, 0, msgBuffer.Length); 
             }
         }
 
@@ -26,8 +31,8 @@ namespace ChatApp
             {
                 if (stream.CanRead)
                 {
-                    byte[] msgBuffer = new byte[1024]; // siffran går att ändra för vilken storlek man vill ha
-                    int received = stream.Read(msgBuffer, 0, msgBuffer.Length); // läser datan från stream
+                    byte[] msgBuffer = new byte[1024]; 
+                    int received = stream.Read(msgBuffer, 0, msgBuffer.Length); 
 
                     if (received > 0)
                     {
