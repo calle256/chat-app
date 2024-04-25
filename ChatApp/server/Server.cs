@@ -14,12 +14,19 @@ namespace server
     public class Server
     {
         private readonly List<TcpClient> clients = new List<TcpClient>();
-        private readonly Send sender = new Send();
-        private GroupServer groupChat = new GroupServer("groupsession"); 
+        private GroupServer groupChat = new GroupServer("groupsession");
+        private int port; 
+        private IPAddress ip; 
+
+        public Server(int port, IPAddress ip)
+        {
+            this.port = port; 
+            this.ip = ip;  
+        }
 
         public void StartServer()
         {
-            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1234);
+            IPEndPoint ip = new IPEndPoint(this.ip, this.port);
             Listener listener = new Listener(ip);
             Thread handleDcThread = new Thread(HandleDisconnect);
             handleDcThread.Start();
@@ -77,7 +84,6 @@ namespace server
                     if (client != sender)
                     {
                         var socket = client.Client;
-                        this.sender.MsgSend(socket, msg);
                     }
                 }
             }
