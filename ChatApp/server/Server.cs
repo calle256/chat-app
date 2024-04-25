@@ -98,7 +98,7 @@ namespace server
                     client.Client.Poll(1, SelectMode.SelectRead) && client.Client.Available == 0
                 );
             }
-            catch (SocketException)
+            catch (Exception e)
             {
                 return false;
             }
