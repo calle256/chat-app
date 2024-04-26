@@ -48,12 +48,9 @@ namespace server
             string userName = SocketUtility.MsgReceive(stream);
 
             UserInfo userInfo = AuthenticateUser(userName,client);
-
-            SocketUtility.MsgSend(stream, SessionId);
+            string welcome_msg = "Welcome " + userName + "\nOnline members: " + this.Clients.Count; 
+            SocketUtility.MsgSend(stream, welcome_msg);
             JoinGroup(client); 
-            foreach(var chatter in Clients){
-                Console.WriteLine(client); 
-            }
             while(true){
                 try{                
                     string msg = ReceiveMsg(client); 
