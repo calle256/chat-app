@@ -30,23 +30,23 @@ A chat app between two or more users. We want to implement a client-server model
 Open the solution file in VisualStudio and run.
 
 ## Linux
-Requirements: Mono
+Requirements: Dotnet runtime 8.0.0
+
+To compile the server, run the following command: 
+`dotnet build ChatApp/server [target path for artifacts]`  
+To just run the server from the command line, run the following command: 
+`dotnet run --project ChatApp/server`
 
 To compile the server, run the following command in the Git folder:  
-`csc ChatApp/server/*.cs -out:server.exe`  
-Then start the server file with:  
-`mono server.exe`  
-
-To compile the server, run the following command in the Git folder:  
-`csc ChatApp/client/*.cs -out:client.exe`  
-Then run the client with:  
-`mono client.exe`  
-
-NOTE! No functionality currently exists for communicating between server and client. 
+`dotnet build ChatApp/client [target path for artifacts]`  
+To instead run the client from the command line, use the following command: 
+`dotnet run --project ChatApp/client`
 
 ## Unit tests
-Run the following command in the Git folder for unit testing:  
-`dotnet test`  
+To run the client tests, run the following command: 
+`dotnet test Client.Test`  
+To instead run the server tests, run the following command: 
+`dotnet test Server.Test`
 Run the following command in the Git folder for code coverage:  
 `dotnet tool install --global dotnet-coverage`  
 Then run:  
