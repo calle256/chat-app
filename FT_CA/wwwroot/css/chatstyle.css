@@ -1,0 +1,179 @@
+﻿/* Styling för sidbar och dess scroll i slutet */
+html, body {
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0;
+    overflow-x: hidden; 
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.bg-dark {
+    background-color: #343a40;
+    padding-top: 0; 
+}
+
+
+h3 {
+    margin-top: 0; 
+    margin-bottom: 0.5rem;
+}
+
+
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0; 
+}
+
+
+.messages-box {
+    overflow-y: auto;
+    max-height: calc(100vh - 70px); 
+}
+
+.list-group-item {
+    background-color: #23272b;
+    border: none;
+}
+
+    .list-group-item.active {
+        background-color: #007bff;
+    }
+
+.media img {
+    border-radius: 50%;
+}
+
+.media-body {
+    flex: 1;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+
+.font-italic {
+    font-style: italic;
+}
+
+
+
+.small {
+    font-size: smaller;
+}
+
+
+
+@media (max-width: 767px) {
+    .bg-dark {
+        padding: 15px;
+    }
+}
+
+
+
+/* Styles the scrollbar handle */
+.messages-box::-webkit-scrollbar-thumb {
+    background-color: #555; 
+    border-radius: 10px; 
+    border: 4px solid #2c2f33; 
+}
+
+/* Style för själv scrollbar */
+.messages-box::-webkit-scrollbar {
+    width: 5px;
+}
+
+.list-group-item:hover {
+    background-color: #007bff;
+}
+
+.chat-messages {
+    min-height: 50vh; 
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+
+.col-md-3, .col-md-9 {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.bg-dark, .card {
+    border-radius: 0; 
+}
+
+.min-vh-100 {
+    min-height: calc(100vh - 50px); 
+
+
+
+.col-md-9 > div {
+    margin: 0; 
+}
+
+
+
+
+.overflow-auto {
+    overflow-y: auto; 
+}
+
+
+.col-md-9 {
+    display: flex; 
+    flex-direction: column; 
+    height: calc(100vh - 50px); 
+}
+
+#chatMessages {
+    flex-grow: 1; 
+    padding: 10px; 
+    min-height: 0; 
+}
+
+
+#chatMessages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+}
+
+
+.chat::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; 
+}
+
+.chat::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px; 
+}
+
+.chat::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 4px; 
+    border: 2px solid #f1f1f1; 
+}
+
+    .chat::-webkit-scrollbar-thumb:hover {
+        background-color: #555; 
+    }

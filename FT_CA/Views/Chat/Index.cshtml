@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--länken för Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--länken för css filen-->
+    <link rel="stylesheet" href="~/css/chatstyle.css">
+    <!--Länken till Awsome font-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!--För att kunna byta Logon på sidan-->
+    <link rel="shortcut icon" type="image/x-icon" href="/imgs/favicon.png">
+
+    <title>ChatApp</title>
+</head>
+<body>
+    <header class="p-1 bg-secondary text-black d-flex justify-content-between align-items-center">
+    <h1>ChatApp</h1>
+    <button class="btn btn-primary" type="button">Log Out</button>
+    </header>
+
+    <aside>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-flex flex-column justify-content-between col-auto col-md-3 bg-dark min-vh-100">
+                    <div>
+                        <h3 class="text-white text-decoration-non d-flex align-items-start m-3 ">Online</h3>
+                        <hr class="text-white my-2" style="width: 100%;">
+                    </div>
+                    <div class="messages-box">
+                        <!-- dynamisk lista över alla användare som är online -->
+                    </div>
+                </div>
+
+                <div class="col-auto col-md-9 bg-warning d-flex flex-column min-vh-100">
+                    <!-- Title Area (Fixed at the Top)  Den kan du lägga till borders för att det ska se snyggare ut-->
+                    <div id="namesList" class="p-3 bg-dark text-white">
+                    </div>
+
+                    <!-- Chat Area med scroll -->
+                    <div class="overflow-auto chat" style="flex-grow: 1;">
+                        
+                        <div id="chatMessages" style="min-height: 100%;">
+                            <!-- Dynamic chat messages will be added here from me-->
+                        </div>
+
+                        <div id="incomming" style="min-height: 100%;">
+                            <!-- Dynamic chat messages will be added here from others-->
+                        </div>
+                    </div>
+
+
+
+                    <!-- Typing Area  -->
+                    <div class="p-3">
+                        <div class="input-group ">
+                            <input type="text" class="form-control" id="messageInput" placeholder="Type a message...">
+                            <button class="btn btn-primary" id="sendButton">Send</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script src="~/js/chat.js"></script>
+
+
+</body>
+</html>
