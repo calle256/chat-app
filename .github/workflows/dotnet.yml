@@ -40,4 +40,17 @@ jobs:
       run: dotnet test --no-build --verbosity normal Server.Test
     - name: Run client tests 
       run: dotnet test --no-build --verbosity normal Client.Test
+
+    - name: Build server
+      run: dotnet build ChatApp/server --no-restore -o ChatApp/server/bin
+
+    - name: Upload server build output
+      uses: actions/upload-artifact@v2
+      with:
+        name: server output build
+        path: ChatApp/server/bin/
+
+
+
+      
       
