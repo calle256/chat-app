@@ -9,17 +9,18 @@ namespace Test
 	[TestFixture]
 	public class SessionManagerTests
 	{
+        public GroupServer groupServer = new GroupServer("session");
 		public TcpClient _client;
-        List<TcpClient> clients = new List<TcpClient>();
+        //List<TcpClient> clients = new List<TcpClient>();
 
         [Test]
 		public void JoinGroup_ClientIsInList_ReturnTrue()
 		{
 			_client = new TcpClient();
 
-            JoinGroup(_client);
+            groupServer.JoinGroup(_client);
 
-			Assert.IsTrue(clients.Contains(_client));
+			Assert.IsTrue(groupServer.Clients.Contains(_client));
 		}
 
 		[Test]
@@ -27,9 +28,9 @@ namespace Test
 		{
             _client = new TcpClient();
 
-            JoinGroup(new TcpClient());
+            groupServer.JoinGroup(new TcpClient());
 
-            Assert.IsFalse(clients.Contains(_client));
+            Assert.IsFalse(groupServer.Clients.Contains(_client));
         }
 
 		[Test]
@@ -37,11 +38,11 @@ namespace Test
 		{
             _client = new TcpClient();
 
-            JoinGroup(_client);
+            groupServer.JoinGroup(_client);
 
-            LeaveGroup(_client);
+            groupServer.LeaveGroup(_client);
 
-            Assert.IsFalse(clients.Contains(_client));
+            Assert.IsFalse(groupServer.Clients.Contains(_client));
 
         }
 
@@ -50,24 +51,18 @@ namespace Test
         {
             _client = new TcpClient();
 
-            JoinGroup(_client);
-            JoinGroup(new TcpClient());
+            groupServer.JoinGroup(_client);
+            groupServer.JoinGroup(new TcpClient());
 
-            LeaveGroup(_client);
+            groupServer.LeaveGroup(_client);
 
-            Assert.IsFalse(clients.Contains(_client));
+            Assert.IsFalse(groupServer.Clients.Contains(_client));
 
         }
 
-        public void JoinGroup(TcpClient client)
-        {
-            clients.Add(client);
-        }
+        
 
-        public void LeaveGroup(TcpClient tcpClient)
-        {
-            clients.Remove(tcpClient);
-        }
+        
 
     }
 }

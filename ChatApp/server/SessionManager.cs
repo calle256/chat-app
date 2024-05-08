@@ -20,7 +20,7 @@ namespace server
     public class GroupServer
     {
         private string SessionId; 
-        private List<TcpClient> Clients; 
+        public List<TcpClient> Clients; 
         //private Dictionary<string, List<TcpClient>> groups = new Dictionary<string, List<TcpClient>>();
         public GroupServer(string id)
         {
