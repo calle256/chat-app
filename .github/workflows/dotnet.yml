@@ -49,7 +49,7 @@ jobs:
 
     - name: Update Coverage Badge
       if: github.ref == format('refs/heads/{0}', github.event.chat-app.main)
-      uses: we-cli/coverage-badge-action@main
+      uses: calle256/coverage-badge-action@main
 
     - name: Build server
       run: dotnet build ChatApp/server --no-restore -o ChatApp/server/bin
