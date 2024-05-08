@@ -43,52 +43,6 @@ namespace server
             }
         }
 
-        // Method to manage Client sessions
-        public void ClientHandler(TcpClient client)
-        {
-            try
-            {
-                using(NetworkStream stream = client.GetStream())
-                {
-                    while(true)
-                    {
-                        string receivedMsg = SocketUtility.MsgReceive(stream);
-
-                        if(string.IsNullOrEmpty(receivedMsg))
-                        {
-                            break;
-                        }
-                        Console.WriteLine("Recieved: {0}", receivedMsg);
-
-                        // Send the message back to the client
-                        SocketUtility.MsgSend(stream, "Response: " + receivedMsg);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Client Handling Error!!: {0}", e.Message);
-            }
-
-            client.Close();
-            clients.Remove(client);
-        }
-
-        // method to broadcast message to all users
-        private void SendMsgToAll(string msg, TcpClient sender)
-        {
-            lock(clients)
-            {
-                foreach (var client in clients)
-                {
-                    if (client != sender)
-                    {
-                        var socket = client.Client;
-                    }
-                }
-            }
-        }
-
         //helper function for HandleDisconnect.
         public static bool IsConnected(TcpClient client)
         {
