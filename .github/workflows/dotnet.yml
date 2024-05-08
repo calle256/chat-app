@@ -37,9 +37,15 @@ jobs:
     - name: Build client test
       run: dotnet build --no-restore Client.Test
     - name: Run server tests
-      run: dotnet test --no-build --verbosity normal Server.Test
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage Server.Test
     - name: Run client tests 
-      run: dotnet test --no-build --verbosity normal Client.Test
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage Client.Test
+
+    - name: Code Coverage Generator
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    - name: Code Coverage Report - XMl
+      run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:"Cobertura"
 
     - name: Build server
       run: dotnet build ChatApp/server --no-restore -o ChatApp/server/bin
@@ -49,6 +55,14 @@ jobs:
       with:
         name: server output build
         path: ChatApp/server/bin/
+
+    - name: Upload Artefacts
+#      run: mkdir -p $GITHUB_WORKSPACE/coverage/
+    
+      uses: actions/upload-artifact@v4
+      with:
+        name: code-coverage-report
+        path: coverlet/reports
 
       
 
