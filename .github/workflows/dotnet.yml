@@ -46,6 +46,9 @@ jobs:
 
     - name: Code Coverage Report - XMl
       run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:"Cobertura"
+      
+    - name: Code Coverage Report - HTML
+      run: reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:coverlet/reports -reporttypes:Html
 
     - name: Build server
       run: dotnet build ChatApp/server --no-restore -o ChatApp/server/bin
