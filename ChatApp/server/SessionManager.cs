@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using ChatApp;
+
 namespace server
 {
     public class SessionManager
@@ -9,7 +10,7 @@ namespace server
         //private Dictionary<string, Dictionary<string, UserInfo>> sessions = new Dictionary<string, Dictionary<string, UserInfo>>();
         private TimeSpan sessionTimeout = TimeSpan.FromMinutes(30);
 
-        public void CreateSession(string groupId)
+        public void CreateGroup(string groupId)
         {
             GroupServer group = new GroupServer(groupId); 
         }
@@ -19,7 +20,7 @@ namespace server
     public class GroupServer
     {
         private string SessionId; 
-        private List<TcpClient> Clients; 
+        public List<TcpClient> Clients; 
         //private Dictionary<string, List<TcpClient>> groups = new Dictionary<string, List<TcpClient>>();
         public GroupServer(string id)
         {
