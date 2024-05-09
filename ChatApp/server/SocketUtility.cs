@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.IO; 
 using System.Threading.Tasks;
 using Microsoft.Win32.SafeHandles;
 
@@ -13,7 +14,7 @@ namespace ChatApp
     public static class SocketUtility
     {
 
-        public static void MsgSend(NetworkStream stream, string msg)
+        public static void MsgSend(Stream stream, string msg)
         {
             if (stream.CanWrite)
             {
@@ -22,7 +23,7 @@ namespace ChatApp
             }
         }
 
-        public static string MsgReceive(NetworkStream stream)
+        public static string MsgReceive(Stream stream)
         {
             try
             {
