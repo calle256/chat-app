@@ -45,7 +45,7 @@ namespace ChatApp
         {
             if (tcpClient.Connected)
             {
-                NetworkStream stream = tcpClient.GetStream();
+                Stream stream = tcpClient.GetStream();
                 Thread msgSend = new Thread(() => MsgSend(stream)); 
                 Thread msgReceive = new Thread(() => MsgRecieve(stream));
                 msgSend.Start(); 
@@ -57,7 +57,7 @@ namespace ChatApp
                 this.Connect();
             }
         }
-        public void MsgRecieve(NetworkStream stream){
+        public void MsgRecieve(Stream stream){
             while(tcpClient.Connected){
                 if(tcpClient.Client.Poll(1000, SelectMode.SelectRead) && tcpClient.Client.Available == 0)
                     break; 
@@ -66,7 +66,7 @@ namespace ChatApp
             }
         }
 
-        public void MsgSend(NetworkStream stream){
+        public void MsgSend(Stream stream){
             while (true){
                 if(tcpClient.Client.Poll(1000, SelectMode.SelectRead) && tcpClient.Client.Available == 0)
                     break; 
