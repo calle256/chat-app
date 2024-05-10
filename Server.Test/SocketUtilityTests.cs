@@ -12,31 +12,30 @@ namespace Test
 public class SocketUtilityTest
 {
         [Test]
-        public void MsgReceive_WhenStreamCanRead_ReturnsReceivedMessage()
+        public void MsgSend_WhenStreamCanWrite_SendsMessage()
         {
             var mockStream = new Mock<Stream>(MockBehavior.Strict);
-            mockStream.Setup(s => s.CanRead).Returns(true);
-
+            mockStream.Setup(s => s.CanWrite).Returns(true);
             string msg = "Test message";
-            byte[] msgBytes = Encoding.UTF8.GetBytes(msg);
+            byte[] expectedBytes = Encoding.UTF8.GetBytes(msg);
 
-            mockStream.Setup(s => s.Read(It.IsAny<byte[]>(), 0, 1024)).Returns(msgBytes.Length)
-                      .Callback<byte[], int, int>((buffer, offset, count) => msgBytes.CopyTo(buffer, offset));
+            mockStream.Setup(s => s.Write(expectedBytes, 0, expectedBytes.Length)).Verifiable();
 
-            string receivedMsg = SocketUtility.MsgReceive(mockStream.Object);
+            SocketUtility.MsgSend(mockStream.Object, msg);
 
-            Assert.That(receivedMsg, Is.EqualTo(msg));
+            mockStream.Verify();
         }
 
         [Test]
-        public void MsgReceive_WhenStreamCannotRead_ReturnsEmptyString()
+        public void MsgSend_WhenStreamCannotWrite_DoesNotSendMessage()
         {
             var mockStream = new Mock<Stream>(MockBehavior.Strict);
-            mockStream.Setup(s => s.CanRead).Returns(false);
+            mockStream.Setup(s => s.CanWrite).Returns(false);
+            string msg = "Test message";
 
-            string receivedMsg = SocketUtility.MsgReceive(mockStream.Object);
+            SocketUtility.MsgSend(mockStream.Object, msg);
 
-            Assert.That(receivedMsg, Is.EqualTo(string.Empty));
+            mockStream.Verify(s => s.Write(It.IsAny<byte[]>(), 0, It.IsAny<int>()), Times.Never);
         }
 
     }
