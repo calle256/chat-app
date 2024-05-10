@@ -40,7 +40,7 @@ public class SocketUtilityTest
         }
 
         [Test]
-        public void MsgReceive_WhenStreamCanRead_ReturnsReceivedMessage()
+        public void MsgReceive_WhenStreamCanRead_ReturnsReceivedMsg()
         {
             var mockStream = new Mock<Stream>(MockBehavior.Strict);
             mockStream.Setup(s => s.CanRead).Returns(true);
@@ -57,7 +57,7 @@ public class SocketUtilityTest
         }
 
         [Test]
-        public void MsgReceive_WhenStreamCannotRead_ReturnsEmptyString()
+        public void MessageReceive_WhenStreamCannotRead_ReturnsEmptyString()
         {
             var mockStream = new Mock<Stream>(MockBehavior.Strict);
             mockStream.Setup(s => s.CanRead).Returns(false);
