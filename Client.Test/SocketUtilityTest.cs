@@ -39,5 +39,33 @@ namespace Test
             mockStream.Verify(s => s.Write(It.IsAny<byte[]>(), 0, It.IsAny<int>()), Times.Never);
         }
 
+        [Test]
+        public void MsgReceive_WhenStreamCanRead_ReturnsReceivedMessage()
+        {
+            var mockStream = new Mock<Stream>(MockBehavior.Strict);
+            mockStream.Setup(s => s.CanRead).Returns(true);
+
+            string msg = "Test message";
+            byte[] msgBytes = Encoding.UTF8.GetBytes(msg);
+
+            mockStream.Setup(s => s.Read(It.IsAny<byte[]>(), 0, 1024)).Returns(msgBytes.Length)
+                      .Callback<byte[], int, int>((buffer, offset, count) => msgBytes.CopyTo(buffer, offset));
+
+            string receivedMsg = SocketUtility.MsgReceive(mockStream.Object);
+
+            Assert.That(receivedMsg, Is.EqualTo(msg));
+        }
+
+        [Test]
+        public void MsgReceive_WhenStreamCannotRead_ReturnsEmptyString()
+        {
+            var mockStream = new Mock<Stream>(MockBehavior.Strict);
+            mockStream.Setup(s => s.CanRead).Returns(false);
+
+            string receivedMsg = SocketUtility.MsgReceive(mockStream.Object);
+
+            Assert.That(receivedMsg, Is.EqualTo(string.Empty));
+        }
+
     }
 }
