@@ -14,7 +14,7 @@ namespace server
     public class Server
     {
         private readonly List<TcpClient> clients = new List<TcpClient>();
-        private GroupServer groupChat = new GroupServer("groupsession");
+        public GroupServer groupChat = new GroupServer("groupsession");
         private int port; 
         private IPAddress ip; 
 
