@@ -42,24 +42,30 @@ namespace server
         public void HandleClientConnection(TcpClient client)
         {
             NetworkStream stream = client.GetStream();
-            string userNameRequest = "Enter username";
-            SocketUtility.MsgSend(stream, userNameRequest);
+            Response userNameRequest = new Response("message", "server", "Enter username"); 
+            SocketUtility.MsgSend(stream, userNameRequest.Serialize());
 
             string userName = SocketUtility.MsgReceive(stream);
 
             UserInfo userInfo = AuthenticateUser(userName,client);
             string welcome_msg = "Welcome " + userName + "\nOnline members: " + this.Clients.Count; 
-            SocketUtility.MsgSend(stream, welcome_msg);
+            //SocketUtility.MsgSend(stream, welcome_msg);
             JoinGroup(client); 
             while(true){
                 try{                
                     string msg = ReceiveMsg(client); 
-                    if(msg != String.Empty)
-                      SendMsgToAll(userName + ": " + msg, client); 
+                    if(msg != String.Empty){
+                        Response rs = new Response("message", userName, msg); 
+                        Console.WriteLine(rs.Serialize()); 
+                        SendMsgToAll(rs.Serialize(), client); 
+                          
+                    }
+
                 }
                 catch (Exception e){
                     Console.WriteLine(e);
-                    SendMsgToAll(userName + " has disconnected.", client); 
+                    Response dc = new Response("dc", "server", userName + " has disconnected"); 
+                    SendMsgToAll(dc.Serialize(), client); 
                     stream.Close(); 
                     client.Close(); 
                     Clients.Remove(client); 

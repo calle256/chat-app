@@ -9,13 +9,13 @@ namespace ChatApp
     public class Request
     {
         [JsonInclude]
-        public string type; 
+        public string rqType; 
         [JsonInclude]
         public string message; 
 
         public Request(string type, string message)
         {
-            this.type = type; 
+            this.rqType = type; 
             this.message = message; 
         }
 
@@ -29,7 +29,7 @@ namespace ChatApp
     public class Response 
     {
         [JsonInclude]
-        public string type; 
+        public string rsType; 
         [JsonInclude]
         public string sender; 
         [JsonInclude]
@@ -37,7 +37,7 @@ namespace ChatApp
 
         public Response(string type, string sender, string payload)
         {
-            this.type = type; 
+            this.rsType = type; 
             this.sender = sender; 
             this.payload = payload; 
         }
