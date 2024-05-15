@@ -51,7 +51,7 @@ fn read_stream(handle: AppHandle, mut stream: &TcpStream) {
     loop{
         let mut buf = [0; 1024]; 
         let _ = stream.read(&mut buf[..]);
-        let msg = str::from_utf8(&buf).unwrap(); 
+        let msg = str::from_utf8(&buf).unwrap().trim_matches(char::from(0)); 
         println!("{}", msg); 
         handle.emit_all("rcv", Payload {message: String::from(msg)}).unwrap(); 
     }
