@@ -1,0 +1,78 @@
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Ensures font consistency */
+}
+
+.bg-dark {
+  background-color: #343a40 !important; /* Dark background for the whole app */
+}
+
+.navbar {
+  background-color: #dc3545 !important; /* Red background for navbar */
+}
+
+.navbar h1 {
+  color: #ffc107; /* Yellow text for the navbar title */
+}
+.navbar button{
+  width: 100px;
+}
+
+.flex-grow-1 {
+  display: flex;
+  flex-direction: column;
+  overflow:auto;
+  padding: 20px; /* Adds padding inside the scrollable content area */
+}
+
+.text-danger {
+  color: #dc3545 !important; /* Red color for the 'Hej' text */
+}
+
+.bg-warning {
+  background-color: #ffc107 !important; /* Yellow background for the bottom input area */
+}
+
+.form-control {
+  color: #495057;
+  background-color: #fff;
+  border-color: #ced4da; /* Standard Bootstrap styles for form input */
+}
+
+.btn-outline-success {
+  color: #28a745;
+  border-color: #28a745; /* Green outline for the logout button */
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745; /* Green background for the send button */
+}
+
+.fixed-bottom {
+  padding: 10px 20px; /* Padding for the bottom input area */
+}
+
+.nere button{
+  width: 100px;
+}
+
+
+.msgList{
+  list-style-type: none;
+  display: block; 
+}
+
+.msgYou{
+  color: white;
+  font-size: 20px;
+  text-align: right;
+}
+.msgOther{
+  color: white;
+  font-size: 20px;
+  text-align:left; 
+}
