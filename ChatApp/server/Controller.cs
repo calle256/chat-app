@@ -1,6 +1,6 @@
 ﻿using System;
 using ChatApp;
-using System.Net; 
+using System.Net;
 
 namespace server
 {
@@ -26,7 +26,7 @@ namespace server
             {
                 ipAddress = args[0]; 
             }
-
+            
             Server server = new Server(port, IPAddress.Parse(ipAddress));
             server.StartServer();
         }
