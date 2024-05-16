@@ -57,7 +57,6 @@ function App() {
           if(message.sender=="you"){
             return( 
             <li key={index} className="msgYou">
-                <div>{message.sender}</div>
                 <div className="bubble">{message.msg}</div>
             </li>
             )
@@ -65,7 +64,7 @@ function App() {
           else{
             return(
             <li key={index} className="msgOther">
-                  <div>{message.sender}</div>
+                  <div className="senderName">{message.sender}</div>
                   <div className="resbubble">{message.msg}</div>
               </li>
             )

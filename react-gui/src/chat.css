@@ -73,12 +73,6 @@ html,body{
 }
 
 
-.msgOther{
-  
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-}
 
 .msgOther .resbubble {
   background-color: #765959; 
@@ -116,4 +110,23 @@ html,body{
   word-wrap: break-word;
   margin: 5px 0; 
   position: relative;
+}
+
+.senderName{
+  display: block;
+  color: #fff;
+  margin-bottom: 1px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+
+.msgOther{
+  
+  list-style: none;
+  display: flex;
+  /*justify-content: flex-start;*/
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1px;
 }
