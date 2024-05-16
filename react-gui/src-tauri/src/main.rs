@@ -2,7 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use std::io::*;
 use tauri::{Event, Window, State, Manager, AppHandle}; 
-use std::net::TcpStream;
+use std::net::{TcpStream, Shutdown}; 
 use std::ops::Deref;
 use std::sync::{Arc, Mutex};
 use std::{str, thread}; 
@@ -34,7 +34,7 @@ async fn main() {
             Ok(())
         })
         .manage(Mutex::new(socket))
-        .invoke_handler(tauri::generate_handler![greet, write_stream])
+        .invoke_handler(tauri::generate_handler![greet, write_stream, connect_server, leave_server])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -55,4 +55,15 @@ fn read_stream(handle: AppHandle, mut stream: &TcpStream) {
         println!("{}", msg); 
         handle.emit_all("rcv", Payload {message: String::from(msg)}).unwrap(); 
     }
+}
+
+#[tauri::command]
+fn connect_server(state:State<'_, Mutex<TcpStream>>, endpoint: String){
+    let mut socket = state.deref(); 
+    socket = &Mutex::new(TcpStream::connect(endpoint).unwrap()); 
+}
+#[tauri::command]
+fn leave_server(state:State<'_, Mutex<TcpStream>>){ 
+    let mut socket = state.deref(); 
+    let _ = socket.lock().unwrap().shutdown(Shutdown::Both).unwrap(); 
 }
