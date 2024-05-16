@@ -3,8 +3,10 @@ import reactLogo from "./assets/react.svg";
 import { invoke} from "@tauri-apps/api/tauri";
 import { listen, emit } from "@tauri-apps/api/event";
 import { appWindow } from "@tauri-apps/api/window";
-import "./App.css";
-import "./styles.css"; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import "./App.css";
+//import "./styles.css"; 
+import "./login.css";
 function App() {
   useEffect(() => {
     const unlisten = listen("rcv", (event) => {
@@ -24,22 +26,26 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Welcome to our Chat App!</h1>
-      <form
-        className="row"
-        onSubmit={(e) => {
+    <div className="lgcontainer bg-dark">
+      <div className="wrapper">
+        <h2 className="logintlt">Welcome to our Chat App!</h2>
+        <form
+          className="lgform"
+          onSubmit={(e) => {
           e.preventDefault();
           greet();
         }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter your name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
+        >
+          <input
+            id="greet-input"
+            onChange={(e) => setName(e.currentTarget.value)}
+            placeholder="Enter your name..."
+            required
+            className="inputbox"
+          />
+          <button type="submit">Connect</button>
+        </form>
+      </div>
 
       <p>{greetMsg}</p>
     </div>

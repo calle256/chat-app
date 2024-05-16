@@ -3,8 +3,10 @@ import reactLogo from "./assets/react.svg";
 import { invoke} from "@tauri-apps/api/tauri";
 import { listen, emit } from "@tauri-apps/api/event";
 import { appWindow } from "@tauri-apps/api/window";
-import "./App.css";
-import "./styles.css"; 
+//mport "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./chat.css";
+//import "./styles.css"; 
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -37,53 +39,57 @@ function App() {
     console.log(messages); 
   }
   return (
-    <div className="container">
-      <div className="chatCont">
-      <ul className="msgList">
+    <div className="bg-dark d-flex flex-column vh-100">
+      <nav className="navbar bg-body-tertiary bg-dark">
+        <div className="container-fluid">
+            <h1 className="text-warning">ChatApp</h1>
+            <form className="d-flex">
+                <button className="btn btn-outline-success" type="submit">Log Out</button>
+            </form>
+        </div>
+      </nav>
+  
+
+    
+    <div className="flex-grow-1 overflow-auto">       
+    <ul className="msgList">
         {messages.map((message, index) =>{ 
           if(message.sender=="you"){
             return( 
             <li key={index} className="msgYou"> 
-              <div>{message.msg}</div></li>
+              <div className="bubble">{message.msg}</div></li>
             )
           }
           else{
             return(
             <li key={index} className="msgOther"> 
-              <div>{message.msg}</div>
+              <div className="resbubble">{message.msg}</div>
               </li>
             )
           }
         })}
       </ul>
-        <form
-          className="row"
-          onSubmit={(e) => {
-            e.preventDefault()
-            e.target.reset();
-            greet();
-          }}
-        >
-          <input
-            id="messageBox"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter message..."
-          />
-          <button type="submit">Send</button>
+
+
+    </div>
+
+    
+    <div className="bg-warning p-1 fixed-bottom nere">
+        <form className="d-flex"
+              onSubmit={(e) => {
+              e.preventDefault()
+              e.target.reset();
+              greet();
+              }}>
+            <input type="text" className="form-control me-2" placeholder="Type your message here..."
+              onChange={(e) => setName(e.currentTarget.value)}/>
+            <button className="btn btn-success btn-lg" type="submit">Send</button>
         </form>
         <p>{greetMsg}</p>
-      </div>
+    </div>
     </div>
   );
 }
 
-function createMessage(message) {
-  return (
-    <li key={msgCount}>
-    <div>
-      <p>{message}</p> 
-    </div>
-    </li>
-  )
-}
+
 export default App; 
