@@ -57,13 +57,13 @@ function App() {
           if(message.sender=="you"){
             return( 
             <li key={index} className="msgYou"> 
-              <div>{message.msg}</div></li>
+              <div className="bubble">{message.msg}</div></li>
             )
           }
           else{
             return(
             <li key={index} className="msgOther"> 
-              <div>{message.msg}</div>
+              <div className="resbubble">{message.msg}</div>
               </li>
             )
           }
@@ -74,7 +74,7 @@ function App() {
     </div>
 
     
-    <div className="bg-warning p-2 fixed-bottom nere">
+    <div className="bg-warning p-1 fixed-bottom nere">
         <form className="d-flex"
               onSubmit={(e) => {
               e.preventDefault()
