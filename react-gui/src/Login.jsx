@@ -10,7 +10,7 @@ import "./login.css";
 function App() {
   useEffect(() => {
     const unlisten = listen("rcv", (event) => {
-      console.log(event.payload.message); 
+      console.log(event.message); 
     }); 
     return () => {
       unlisten.then(f => f()); 

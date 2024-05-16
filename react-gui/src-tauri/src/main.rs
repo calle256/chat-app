@@ -8,9 +8,23 @@ use std::sync::{Arc, Mutex};
 use std::{str, thread}; 
 use serde::*; 
 
-#[derive(Clone, serde::Serialize)]
-struct Payload{
+
+#[derive(Clone, Serialize, Deserialize)]
+struct Request{
+    rqType: String, 
     message: String, 
+}
+#[derive(Clone, Serialize, Deserialize)]
+struct Response{
+    rsType: String, 
+    sender: String, 
+    payload: String, 
+}
+
+
+#[derive(Clone, Serialize, Deserialize)]
+struct Payload{
+    rs: Response, 
 }
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -26,7 +40,6 @@ async fn main() {
     println!("hello from rust :)"); 
     tauri::Builder::default()
         .setup(|app|{
-            app.emit_all("rcv", Payload { message: "Tauri is awesome!".into() }).unwrap();
             let appH = app.handle(); 
             thread::spawn(move || {
                 read_stream(appH, &read); 
@@ -52,8 +65,9 @@ fn read_stream(handle: AppHandle, mut stream: &TcpStream) {
         let mut buf = [0; 1024]; 
         let _ = stream.read(&mut buf[..]);
         let msg = str::from_utf8(&buf).unwrap().trim_matches(char::from(0));
+        let rs: Response= serde_json::from_str(msg).expect("Invalid response"); 
         println!("{}", msg); 
-        handle.emit_all("rcv", Payload {message: String::from(msg)}).unwrap(); 
+        handle.emit_all("rcv", Payload{rs: rs}).unwrap(); 
     }
 }
 

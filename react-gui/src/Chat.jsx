@@ -15,10 +15,10 @@ function App() {
     const unlisten = listen("rcv", (event) => {
       setMsgCount(msgCount+ 1); 
       messages.push(
-        { msg: event.payload.message,
-          sender: "other"
+        { msg: event.payload.rs.payload,
+          sender: event.payload.rs.sender
         }); 
-      console.log(event.payload.message); 
+      console.log(event.payload.rs.payload);
       console.log(messages); 
     }); 
     return () => {
@@ -56,14 +56,17 @@ function App() {
         {messages.map((message, index) =>{ 
           if(message.sender=="you"){
             return( 
-            <li key={index} className="msgYou"> 
-              <div className="bubble">{message.msg}</div></li>
+            <li key={index} className="msgYou">
+                <div>{message.sender}</div>
+                <div className="bubble">{message.msg}</div>
+            </li>
             )
           }
           else{
             return(
-            <li key={index} className="msgOther"> 
-              <div className="resbubble">{message.msg}</div>
+            <li key={index} className="msgOther">
+                  <div>{message.sender}</div>
+                  <div className="resbubble">{message.msg}</div>
               </li>
             )
           }
