@@ -92,6 +92,7 @@ function App() {
             placeholder="Type your message here..."
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}
+            required
           />
           <button className="btn btn-success btn-lg nere" type="submit">Send</button>
         </form>
