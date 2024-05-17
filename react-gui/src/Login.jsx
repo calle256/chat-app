@@ -42,6 +42,7 @@ function App() {
             placeholder="Enter your name..."
             required
             className="inputbox"
+            autoComplete="off"
           />
           <button type="submit">Connect</button>
         </form>
