@@ -39,7 +39,7 @@ html, body {
   color: #495057;
   background-color: #fff;
   border-color: #ced4da;
-}
+  width: 80%;}
 
 .btn-outline-success {
   color: #28a745;
@@ -142,4 +142,66 @@ html, body {
 .nere {
   padding: 10px 20px;
   width: 100px;
+}
+
+#tit{
+  color: white;
+  text-shadow:
+    0 0 5px #741967,
+    0 0 10px #fc10dc,
+    0 0 15px #fc10dc,
+    0 0 20px #fc10dc,
+    0 0 25px #fc10dc,
+    0 0 30px #fc10dc,
+    0 0 35px #fc10dc;
+}
+
+#skriv{
+  
+  box-shadow:
+    0 0 3px #b20dff,
+    0 0 5px #b20dff,
+    0 0 5px #b20dff,
+    0 0 10px #b20dff,
+    0 0 15px #b20dff,
+    0 0 20px #b20dff,
+    0 0 25px #b20dff;
+}
+
+#sendbtn{
+  color: rgb(24, 238, 5);
+  margin-left: 15px;
+  width: 20%;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 20px;
+  font-size: 25px;
+  box-shadow: 
+    0 0 1px rgb(24, 238, 5),
+    0 0 3px rgb(24, 238, 5),
+    0 0 3px rgb(24, 238, 5),
+    0 0 5px rgb(24, 238, 5),
+    0 0 10px rgb(24, 238, 5),
+    0 0 10px rgb(24, 238, 5),
+    0 0 15px rgb(24, 238, 5);
+}
+
+.pls{
+  color:rgb(228, 179, 18);
+  
+  width: 100%;
+  box-shadow: 
+    0 0 0.5px rgb(228, 179, 18),
+    0 0 2px rgb(228, 179, 18),
+    0 0 2px rgb(228, 179, 18),
+    0 0 3px rgb(228, 179, 18),
+    0 0 7px rgb(228, 179, 18),
+    0 0 7px rgb(228, 179, 18),
+    0 0 10px rgb(228, 179, 18);
+}
+
+.pls:hover{
+  color: white;
+  font-weight: bolder;
+  background-color:rgb(228, 179, 18) ;
 }

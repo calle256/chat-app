@@ -52,9 +52,9 @@ function App() {
     <div className="d-flex flex-column vh-100 bg-dark">
       <nav className="navbar bg-dark">
         <div className="container-fluid">
-          <h1 className="text-warning">ChatApp</h1>
+          <h1 id="tit">ChatApp</h1>
           <form className="d-flex">
-            <button className="btn btn-outline-success" type="submit">Log Out</button>
+            <button id="logout" className="btn btn-grey pls" type="submit">Log Out</button>
           </form>
         </div>
       </nav>
@@ -81,20 +81,20 @@ function App() {
         </ul>
       </div>
 
-      <div className="bg-warning p-1 typing-area">
+      <div className="bg-dark p-1 typing-area">
         <form className="d-flex w-100" onSubmit={(e) => {
           e.preventDefault();
           greet();
         }}>
           <input
             type="text"
-            className="form-control me-2"
+            className="form-control me-2" id="skriv"
             placeholder="Type your message here..."
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}
             required
           />
-          <button className="btn btn-success btn-lg nere" type="submit">Send</button>
+          <button className="btn btn-lg nere" id="sendbtn" type="submit">Send</button>
         </form>
         <p>{greetMsg}</p>
       </div>

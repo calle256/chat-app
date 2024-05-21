@@ -37,12 +37,11 @@ fn greet(name: &str) -> String {
 async fn main() {
     let socket= TcpStream::connect("127.0.0.1:1234").unwrap();
     let read = socket.try_clone().unwrap();
-    println!("hello from rust :)"); 
     tauri::Builder::default()
         .setup(|app|{
-            let appH = app.handle(); 
+            let handle = app.handle(); 
             thread::spawn(move || {
-                read_stream(appH, &read); 
+                read_stream(handle, &read); 
             });
             Ok(())
         })
@@ -65,7 +64,7 @@ fn read_stream(handle: AppHandle, mut stream: &TcpStream) {
         let mut buf = [0; 1024]; 
         let _ = stream.read(&mut buf[..]);
         let msg = str::from_utf8(&buf).unwrap().trim_matches(char::from(0));
-        let rs: Response= serde_json::from_str(msg).expect("Invalid response"); 
+        let rs: Response = serde_json::from_str(msg).expect("Invalid response"); 
         println!("{}", msg); 
         handle.emit_all("rcv", Payload{rs: rs}).unwrap(); 
     }
