@@ -89,6 +89,7 @@ function App() {
           <input
             type="text"
             className="form-control me-2" id="skriv"
+            autoComplete="off"
             placeholder="Type your message here..."
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}

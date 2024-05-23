@@ -39,10 +39,10 @@ namespace ChatApp
                 }
                 return string.Empty;
             }
-            catch
+            catch(Exception e)
             {
-                Console.Write("ERROR: Message not received!");
-                return "ERROR: Message not received!";
+                Console.Write(e);
+                return string.Empty; 
             }
         }
     }
