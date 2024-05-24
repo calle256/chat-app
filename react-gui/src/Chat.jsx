@@ -65,14 +65,14 @@ function App() {
             if (message.sender === "you") {
               return (
                 <li key={index} className="msgYou">
-                  <div className="bubble">{message.msg}</div>
+                  <div className="bubble" id="jagmed">{message.msg}</div>
                 </li>
               );
             } else {
               return (
                 <li key={index} className="msgOther">
                   <div className="senderName">{message.sender}</div>
-                  <div className="resbubble">{message.msg}</div>
+                  <div className="resbubble" id="dumed">{message.msg}</div>
                 </li>
               );
             }

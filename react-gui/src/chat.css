@@ -3,14 +3,15 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: black;
 }
 
 .navbar {
-  background-color: #343a40 !important;
+  background-color: black;
 }
 
 .navbar h1 {
@@ -76,18 +77,27 @@ html, body {
 }
 
 .msgOther .resbubble {
-  background-color: #765959;
-  color: white;
   font-size: 16px;
   padding: 10px 20px;
   border-radius: 25px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 50%;
   word-wrap: break-word;
   margin: 5px 0;
   text-align: left;
 }
-
+#dumed {
+  background-color: #c1bcbc;
+  color: rgb(39, 38, 38);
+  font-weight: bold;
+  box-shadow: 
+    0 0 0.5px #e0e0e0,
+    0 0 2px #e0e0e0,
+    0 0 2px #e0e0e0,
+    0 0 3px #e0e0e0,
+    0 0 7px #e0e0e0,
+    0 0 7px #e0e0e0,
+    0 0 10px #e0e0e0;
+}
 .msgYou {
   display: flex;
   justify-content: flex-end;
@@ -95,16 +105,27 @@ html, body {
 }
 
 .msgYou .bubble {
-  background-color: #0078ff;
-  color: white;
   font-size: 16px;
   padding: 10px 20px;
   border-radius: 25px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 40%;
   word-wrap: break-word;
   margin: 5px 0;
   text-align: left;
+}
+#jagmed {
+  background-color: rgb(0, 179, 255);
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 
+    0 0 0.5px rgb(0, 179, 255),
+    0 0 2px rgb(0, 179, 255),
+    0 0 2px rgb(0, 179, 255),
+    0 0 3px rgb(0, 179, 255),
+    0 0 7px rgb(0, 179, 255),
+    0 0 7px rgb(0, 179, 255),
+    0 0 10px rgb(0, 179, 255);
+  
 }
 
 .senderName {
