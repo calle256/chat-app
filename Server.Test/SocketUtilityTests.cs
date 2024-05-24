@@ -76,7 +76,7 @@ public class SocketUtilityTest
 
             string receivedMsg = SocketUtility.MsgReceive(mockStream.Object);
 
-            Assert.That(receivedMsg, Is.EqualTo("ERROR: Message not received!"));
+            Assert.That(receivedMsg, Is.EqualTo(string.Empty));
         }
 
     }
