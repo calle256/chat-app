@@ -93,12 +93,19 @@ namespace server
         {
             lock(Clients)
             {
-                foreach (var client in Clients)
+                for(int i = 0; i<Clients.Count; ++i)
                 {
-                    if (client != sender)
+                    try{
+
+                       if (Clients[i] != sender)
+                        {
+                            var socket = Clients[i].GetStream();
+                            SocketUtility.MsgSend(socket, msg);
+                        }
+                    }
+                    catch(Exception e)
                     {
-                        var socket = client.GetStream();
-                        SocketUtility.MsgSend(socket, msg);
+                        continue; 
                     }
                 }
             }
