@@ -8,7 +8,7 @@ We want to implement a chat application that communicates between terminals.
 Plans for future builds includes a GUI for the application.
 
 ## Detailed description
-We are going to use `C#` for the server and client application and a combination of `HTML, CSS and JavaScript` for the eventual frontend. Depending on our time frame we might add more features, such as a user authentication system. 
+We are going to use `C#` for the server and CLI client application, and Rust combined with React JS and CSS using the Tauri framework for the GUI client application. Depending on our time frame we might add more features, such as a user authentication system. 
 
 
 # Plan 
@@ -17,20 +17,16 @@ We are going to use `C#` for the server and client application and a combination
 A chat app between two or more users. We want to implement a client-server model, where several users can communicate with eachother using a TCP socket. 
 
 ## Features 
-* To be able to see all the users who is online at the moment. 
+* (IN PROGRESS) To be able to see all the users who is online at the moment. 
 * Be able to chat with one or more users and add more users to the current chat.
 
 ## Languages
-* Backend: `C#`
-* Frontend: `HTML, CSS, JavaScript` 
+* Backend: `C#, Rust`
+* Frontend: `HTML, CSS, JavaScript (React)` 
 
 ## Build system 
 
 # Compilation and running
-## Windows/ Mac
-Open the solution file in VisualStudio and run.
-
-## Linux
 Requirements: Dotnet runtime 8.0.0
 
 To compile the server, run the following command: 
@@ -38,10 +34,18 @@ To compile the server, run the following command:
 To just run the server from the command line, run the following command: 
 `dotnet run --project ChatApp/server`
 
-To compile the server, run the following command in the Git folder:  
+To compile the CLI client, run the following command in the Git folder:  
 `dotnet build ChatApp/client [target path for artifacts]`  
-To instead run the client from the command line, use the following command: 
+To instead run the CLI client from the command line, use the following command:  
 `dotnet run --project ChatApp/client`
+
+To compile the GUI client, run these commands from the root of the Git folder:  
+`cd react-gui`
+`npm run tauri build --target-dir [target path for artifacts]`
+
+To run the GUI client in dev mode, run these commands from the root of the Git folder:  
+`cd react-gui`
+`npm run tauri dev`
 
 ## Unit tests
 To run the client tests, run the following command: 
